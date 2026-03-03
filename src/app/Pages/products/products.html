@@ -1,0 +1,59 @@
+<section class="products-page  p-3">
+  <div class="toolbar d-flex flex-column flex-md-row gap-2 align-items-md-center mb-3">
+    <input
+      #searchInput
+      type="text"
+      class="form-control"
+      placeholder="Search by title or category"
+      [value]="searchTerm()"
+      (input)="onSearch(searchInput.value)"
+      [disabled]="isLoading()"
+    />
+
+    <select
+      #sortSelect
+      class="form-select"
+      [value]="sortOption()"
+      (change)="onSortChange(sortSelect.value)"
+      [disabled]="isLoading()"
+    >
+      <option value="default">Default</option>
+      <option value="priceAsc">Price: Low to High</option>
+      <option value="priceDesc">Price: High to Low</option>
+    </select>
+  </div>
+
+  @if (isLoading()) {
+    <div class="loading-state">
+      <h4>Loading products...</h4>
+    <i class="fa-solid fa-spinner fa-spin" style="color: #0d6efd;"></i>     
+ 
+    </div>
+  } @else {
+    <div class="cards d-flex justify-content-center flex-wrap align-items-start gap-2 ">
+      @for (product of filteredProducts(); track product.id) {
+        <article class="card ">
+          <img [src]="product.image" width="200" height="200" [alt]="product.title" />
+
+          <div class="card-body">
+            <h3>{{ product.title | shorten :10 }}</h3>
+            <p>{{ product.description | shorten :50 }}</p>
+
+            <div class="meta">
+              <span>Category: {{ product.category }}</span>
+              <span>Rate: {{ product.rating.rate }} ({{ product.rating.count }})</span>
+            </div>
+
+            <strong>{{ product.price }} $</strong>
+          </div>
+        </article>
+      }
+      @empty {
+        <div class="empty">
+          no Found products
+        </div>
+      }
+    </div>
+  }
+</section>
+<!-- ف حاله  اكتر من 100 عنصر  استخدم pagination  -->

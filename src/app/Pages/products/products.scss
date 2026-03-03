@@ -1,0 +1,48 @@
+.toolbar {
+    .form-control,
+    .form-select {
+        max-width: 320px;
+    }
+}
+
+.card{
+    width: 300px;
+}
+
+.loading-state {
+    width: min(700px, 100%);
+    margin: 0 auto;
+    padding: 20px;
+    border-radius: 12px;
+    text-align: center;
+    background: #f6f7fb;
+    border: 1px solid #e4e8f2;
+
+    .loading-bar {
+        width: 100%;
+        height: 10px;
+        border-radius: 999px;
+        overflow: hidden;
+        background: #dbe2f0;
+        margin-top: 12px;
+
+        span {
+            display: block;
+            height: 100%;
+            background: linear-gradient(90deg, #2088ff, #00b8a9);
+            transition: width 0.2s ease;
+        }
+    }
+}
+
+.empty{
+    display: flex;
+    width: 100%;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    border-radius: 20px;
+
+    padding: 50px;
+    background-color: beige;
+}
